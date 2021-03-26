@@ -13,7 +13,7 @@ res = Key.activate(token=auth,\
                    rsa_pub_key=RSAPubKey,\
                    product_id=10254, key="CVWRY-LRSWB-OBQLS-HNRVD", machine_code=Helpers.GetMachineCode(),\
                    friendly_name=socket.gethostname())
-print(res[0].activated_machines)
+
 if res[0] == None or not Helpers.IsOnRightMachine(res[0]):
     print("An error occured: {0}".format(res[1]))
 else:
@@ -40,7 +40,7 @@ with open('licensefile.skm', 'r') as f:
         print("Feature 1: " + str(license_key.f1))
         print("License expires: " + str(license_key.expires))
     
-print(Helpers.GetMachineCode())
+
 
 def validate_date():
     #If you want to make sure that the license file is not too old, you can specify the maximum number of days as shown below (after 30 days, this method will return NoneType).
