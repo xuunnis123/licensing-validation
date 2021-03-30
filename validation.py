@@ -3,17 +3,17 @@ from licensing.methods import Key, Helpers, Message, Product, Customer, Data, AI
 import logging
 import socket
 import uuid
-RSAPubKey = "<RSAKeyValue><Modusudplus>2o1s3GxdeCFa1xPtkjkCZZGSziMxYAmYVOMGQeZwW9FExEx+z6aW1MVambyz8iS1azisAoucru+rqy1ex1P9kHN6q20UTwS0sJn3k5n+uFen9qEI3ooh2JSz7ArccTTGAw+fEs5b8Ls3ldH2OsfmoVxXcdBtUJZQj3wDQE4ocRDL9M5ybuZjGesxBySeTPVuQjEBpzXElal9vVbcfQubLQZPrHgfr6BxKFf/pt3/6xgewraUyy4HfQly2F3gi9iOoG4Um/8BYIalF0LkYQxv1O5HeKNmDf90TMfAy0CGe+hCr7lVwOLEhYAxO2fo0rxdkHcx6jio5O/DH2or3ISdtQ==</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>"
+RSAPubKey = "<RSAKeyValue><Modulus>2o1s3GxdeCFa1xPtkjkCZZGSziMxYAmYVOMGQeZwW9FExEx+z6aW1MVambyz8iS1azisAoucru+rqy1ex1P9kHN6q20UTwS0sJn3k5n+uFen9qEI3ooh2JSz7ArccTTGAw+fEs5b8Ls3ldH2OsfmoVxXcdBtUJZQj3wDQE4ocRDL9M5ybuZjGesxBySeTPVuQjEBpzXElal9vVbcfQubLQZPrHgfr6BxKFf/pt3/6xgewraUyy4HfQly2F3gi9iOoG4Um/8BYIalF0LkYQxv1O5HeKNmDf90TMfAy0CGe+hCr7lVwOLEhYAxO2fo0rxdkHcx6jio5O/DH2or3ISdtQ==</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>"
 auth = "WyI3NDE0MjIiLCJzMVVvNkxka2dxSlk2YWcvRW10U3lKMHFZT2o5d3pYbjRLNnNSYVNUIl0="
 #from cryptolens_python2 import *
 
 #HelperMethods.ironpython2730_legacy = True
-
+print(Helpers.GetMachineCode())
 res = Key.activate(token=auth,\
                    rsa_pub_key=RSAPubKey,\
                    product_id=10254, key="CVWRY-LRSWB-OBQLS-HNRVD", machine_code=Helpers.GetMachineCode(),\
                    friendly_name=socket.gethostname())
-
+print(res[0].activated_machines)
 if res[0] == None or not Helpers.IsOnRightMachine(res[0]):
     print("An error occured: {0}".format(res[1]))
 else:
@@ -40,7 +40,7 @@ with open('licensefile.skm', 'r') as f:
         print("Feature 1: " + str(license_key.f1))
         print("License expires: " + str(license_key.expires))
     
-
+print(Helpers.GetMachineCode())
 
 def validate_date():
     #If you want to make sure that the license file is not too old, you can specify the maximum number of days as shown below (after 30 days, this method will return NoneType).
